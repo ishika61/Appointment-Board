@@ -4,8 +4,14 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      <h1>Appointment Board</h1>
-      <AppointmentBoard />
+      <header className="app__header">
+        <h1>Appointment Board</h1>
+        <p>View, schedule, and manage your team's appointments.</p>
+      </header>
+
+      <main>
+        <AppointmentBoard />
+      </main>
     </div>
   );
 }
