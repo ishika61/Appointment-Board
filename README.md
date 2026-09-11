@@ -52,7 +52,7 @@ Appointment Board/
 │ ├── routes.py # All /appointments endpoints
 │ ├── schemas.py # Pydantic request/response schemas
 │ └── seed.py # Inserts sample appointments
-|____
+│ └── requirements.txt # Backend Python dependencies
 └── frontend/
 └── src/
 ├── api/
