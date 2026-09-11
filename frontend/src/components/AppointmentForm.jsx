@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 const EMPTY_FORM = {
@@ -65,8 +66,16 @@ function AppointmentForm({ initialData, onSubmit, onCancel, isSaving }) {
 
   return (
     <div className="modal-overlay" onClick={onCancel}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>{isEditing ? "Edit appointment" : "Add appointment"}</h2>
+      <div
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="appointment-form-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 id="appointment-form-title">
+          {isEditing ? "Edit appointment" : "Add appointment"}
+        </h2>
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="form-field">
@@ -77,9 +86,14 @@ function AppointmentForm({ initialData, onSubmit, onCancel, isSaving }) {
               value={form.title}
               onChange={(e) => handleChange("title", e.target.value)}
               placeholder="e.g. Client call"
+              aria-invalid={Boolean(fieldErrors.title)}
+              aria-describedby={fieldErrors.title ? "title-error" : undefined}
+              autoFocus
             />
             {fieldErrors.title && (
-              <span className="field-error">{fieldErrors.title}</span>
+              <span className="field-error" id="title-error" role="alert">
+                {fieldErrors.title}
+              </span>
             )}
           </div>
 
@@ -95,17 +109,21 @@ function AppointmentForm({ initialData, onSubmit, onCancel, isSaving }) {
           </div>
 
           <div className="form-field">
-            <label htmlFor="date">Date</label> 
-<input 
-  id="date" 
-  type="date" 
-  value={form.date} 
-  min={new Date().toISOString().split("T")[0]}
-  onChange={(e) => handleChange("date", e.target.value)} 
-/>
-{fieldErrors.date && ( 
-  <span className="field-error">{fieldErrors.date}</span> 
-)}
+            <label htmlFor="date">Date</label>
+            <input
+              id="date"
+              type="date"
+              value={form.date}
+              min={new Date().toISOString().split("T")[0]}
+              onChange={(e) => handleChange("date", e.target.value)}
+              aria-invalid={Boolean(fieldErrors.date)}
+              aria-describedby={fieldErrors.date ? "date-error" : undefined}
+            />
+            {fieldErrors.date && (
+              <span className="field-error" id="date-error" role="alert">
+                {fieldErrors.date}
+              </span>
+            )}
           </div>
 
           <div className="form-row">
@@ -116,9 +134,15 @@ function AppointmentForm({ initialData, onSubmit, onCancel, isSaving }) {
                 type="time"
                 value={form.start_time}
                 onChange={(e) => handleChange("start_time", e.target.value)}
+                aria-invalid={Boolean(fieldErrors.start_time)}
+                aria-describedby={
+                  fieldErrors.start_time ? "start_time-error" : undefined
+                }
               />
               {fieldErrors.start_time && (
-                <span className="field-error">{fieldErrors.start_time}</span>
+                <span className="field-error" id="start_time-error" role="alert">
+                  {fieldErrors.start_time}
+                </span>
               )}
             </div>
 
@@ -129,9 +153,15 @@ function AppointmentForm({ initialData, onSubmit, onCancel, isSaving }) {
                 type="time"
                 value={form.end_time}
                 onChange={(e) => handleChange("end_time", e.target.value)}
+                aria-invalid={Boolean(fieldErrors.end_time)}
+                aria-describedby={
+                  fieldErrors.end_time ? "end_time-error" : undefined
+                }
               />
               {fieldErrors.end_time && (
-                <span className="field-error">{fieldErrors.end_time}</span>
+                <span className="field-error" id="end_time-error" role="alert">
+                  {fieldErrors.end_time}
+                </span>
               )}
             </div>
           </div>

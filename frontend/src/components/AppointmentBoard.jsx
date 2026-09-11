@@ -1,3 +1,8 @@
+
+
+
+
+
 import { useEffect, useState } from "react";
 import {
   getAppointments,
@@ -119,12 +124,25 @@ function AppointmentBoard() {
         </button>
       </div>
 
-      {isLoading && <p className="board__state">Loading appointments...</p>}
+      {isLoading && (
+        <div className="board__state board__state--loading" aria-live="polite">
+          <span className="spinner" role="presentation" />
+          <p>Loading appointments...</p>
+        </div>
+      )}
 
       {!isLoading && appointments.length === 0 && (
-        <p className="board__state">
-          No appointments match these filters yet.
-        </p>
+        <div className="board__state board__state--empty">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M3 9.5h18" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M8 3v3M16 3v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          <p>
+            <strong>No appointments found</strong>
+            No appointments match these filters yet.
+          </p>
+        </div>
       )}
 
       {!isLoading && appointments.length > 0 && (

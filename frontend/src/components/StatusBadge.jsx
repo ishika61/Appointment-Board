@@ -1,3 +1,5 @@
+
+
 // Small reusable badge that shows an appointment's status
 // with consistent colors across the whole app.
 function StatusBadge({ status }) {
@@ -9,9 +11,11 @@ function StatusBadge({ status }) {
 
   return (
     <span className={`status-badge status-badge--${status}`}>
+      <span className="status-badge__dot" aria-hidden="true" />
       {labels[status] || status}
     </span>
   );
 }
 
 export default StatusBadge;
+
