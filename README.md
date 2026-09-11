@@ -4,6 +4,8 @@ A simple full-stack appointment board built for the Full Stack Developer Intern 
 
 **Stack:** React (Vite, JavaScript) on the frontend, Python (FastAPI + SQLAlchemy) on the backend, PostgreSQL for storage.
 
+demo video: https://drive.google.com/file/d/1duUW54O3jlSA98zaangxCTea0sVV5_wr/view?usp=sharing
+
 ## Features
 
 - View all appointments on a board
